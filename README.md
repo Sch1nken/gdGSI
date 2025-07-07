@@ -16,31 +16,31 @@
         
     *   [Developer Experience](#developer-experience)
         
-*   [Feature Matrix](#📊-feature-matrix)
+*   [Feature Matrix](#-feature-matrix)
     
-*   [Installation Guide](#🚀-installation-guide)
+*   [Installation Guide](#-installation-guide)
     
-*   [Configuration](#⚙️-configuration)
+*   [Configuration](#-configuration)
     
     *   [Example Configuration Files](#example-configuration-files)
         
     *   [Parameter Definitions](#parameter-definitions)
         
-*   [Usage Guidelines](#ℹ️-usage-guidelines)
+*   [Usage Guidelines](#ℹ-usage-guidelines)
     
-    *   [Example Code Snippet (`showcase_gsi.gd`)](#📜-example-code-snippet)
+    *   [Example Code Snippet (`showcase_gsi.gd`)](#-example-code-snippet)
         
-    *   [Primary API Functions](#🔌-primary-api-functions)
+    *   [Primary API Functions](#-primary-api-functions)
 
 *   [Endpoint Examples](#-endpoint-examples)
         
-*   [Plugin File Structure](#📂-plugin-file-structure)
+*   [Plugin File Structure](#-plugin-file-structure)
     
-*   [Critical Considerations ⚠️](#critical-considerations-⚠️)
+*   [Critical Considerations ⚠️](#critical-considerations-)
     
-*   [Contributing](#🤝-contributing)
+*   [Contributing](#-contributing)
     
-*   [Development Roadmap 🗺️](#development-roadmap-🗺️)
+*   [Development Roadmap 🗺️](#development-roadmap-)
     
 ---
 
