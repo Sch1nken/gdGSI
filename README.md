@@ -32,7 +32,7 @@
         
     *   [Primary API Functions](#🔌-primary-api-functions)
 
-*   [Endpoint Examples](#📡-endpoint-examples)
+*   [Endpoint Examples](#-endpoint-examples)
         
 *   [Plugin File Structure](#📂-plugin-file-structure)
     
