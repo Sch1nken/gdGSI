@@ -36,7 +36,7 @@
         
 *   [Plugin File Structure](#open_file_folder-plugin-file-structure)
     
-*   [⚠️ Critical Considerations](#warning-considerations)
+*   [⚠️ Considerations](#warning-considerations)
     
 *   [Contributing](#handshake-contributing)
     
