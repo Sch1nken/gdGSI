@@ -31,6 +31,8 @@
     *   [Example Code Snippet (`showcase_gsi.gd`)](#📜-example-code-snippet)
         
     *   [Primary API Functions](#🔌-primary-api-functions)
+
+*   [Endpoint Examples](#📡-endpoint-examples)
         
 *   [Plugin File Structure](#📂-plugin-file-structure)
     
@@ -287,7 +289,10 @@ func _input(event: InputEvent):
 *   `GSI.add_endpoint(config_instance: GSIConfig)`: This function enables the dynamic addition of a new GSI endpoint during runtime. If an endpoint with an identical ID already exists, the existing configuration will be superseded.
     
 *   `GSI.remove_endpoint(endpoint_id: String)`: This method facilitates the removal of an active GSI endpoint by its unique identifier.
-    
+
+## 📡 Endpoint Examples
+
+See the [Example Repository](https://github.com/Sch1nken/gdGSI-endpoint-examples) for some example endpoint implementations.
 
 ## 📂 Plugin File Structure
 
@@ -355,7 +360,7 @@ To contribute effectively, please adhere to the following guidelines:
 | WebSocket Client Support | ✅ Completed |
 | WebSocket Server Support | ✅ Completed |
 | Improved Error Logging | ✅ Completed |
-| **Receiver Application Examples (Multi-Language)** | ⬜ Planned |
+| Receiver Application Examples (Multi-Language) | ✅ Completed |
 | **Better Godot Project Example Project** | ⬜ Planned |
 | **Integrated Editor Configuration Interface** | ⬜ Planned |
 | **Performance Optimization** | ⬜ Planned |
