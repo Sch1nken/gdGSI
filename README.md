@@ -16,31 +16,31 @@
         
     *   [Developer Experience](#developer-experience)
         
-*   [Feature Matrix](#feature-matrix)
+*   [Feature Matrix](#bar_chart-feature-matrix)
     
-*   [Installation Guide](#installation-guide)
+*   [Installation Guide](#rocket-installation-guide)
     
-*   [Configuration](#configuration)
+*   [Configuration](#gear-configuration)
     
     *   [Example Configuration Files](#example-configuration-files)
         
     *   [Parameter Definitions](#parameter-definitions)
         
-*   [Usage Guidelines](#usage-guidelines)
+*   [Usage Guidelines](#information-usage-guidelines)
     
     *   [Example Code Snippet (`showcase_gsi.gd`)](#example-code-snippet)
         
     *   [Primary API Functions](#primary-api-functions)
 
-*   [Endpoint Examples](#endpoint-examples)
+*   [Endpoint Examples](#satellite_antenna-endpoint-examples)
         
-*   [Plugin File Structure](#plugin-file-structure)
+*   [Plugin File Structure](#open_file_folder-plugin-file-structure)
     
-*   [⚠️ Critical Considerations](#critical-considerations)
+*   [⚠️ Critical Considerations](#warning-critical-considerations)
     
-*   [Contributing](#contributing)
+*   [Contributing](#handshake-contributing)
     
-*   [🗺️ Development Roadmap](#development-roadmap)
+*   [🗺️ Development Roadmap](#world_map-development-roadmap)
     
 ---
 
