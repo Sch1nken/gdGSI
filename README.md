@@ -16,31 +16,31 @@
         
     *   [Developer Experience](#developer-experience)
         
-*   [Feature Matrix](#-feature-matrix)
+*   [Feature Matrix](#feature-matrix)
     
-*   [Installation Guide](#-installation-guide)
+*   [Installation Guide](#installation-guide)
     
-*   [Configuration](#-configuration)
+*   [Configuration](#configuration)
     
     *   [Example Configuration Files](#example-configuration-files)
         
     *   [Parameter Definitions](#parameter-definitions)
         
-*   [Usage Guidelines](#ℹ-usage-guidelines)
+*   [Usage Guidelines](#usage-guidelines)
     
-    *   [Example Code Snippet (`showcase_gsi.gd`)](#-example-code-snippet)
+    *   [Example Code Snippet (`showcase_gsi.gd`)](#example-code-snippet)
         
-    *   [Primary API Functions](#-primary-api-functions)
+    *   [Primary API Functions](#primary-api-functions)
 
-*   [Endpoint Examples](#-endpoint-examples)
+*   [Endpoint Examples](#endpoint-examples)
         
-*   [Plugin File Structure](#-plugin-file-structure)
+*   [Plugin File Structure](#plugin-file-structure)
     
-*   [Critical Considerations ⚠️](#critical-considerations-)
+*   [⚠️ Critical Considerations](#critical-considerations)
     
-*   [Contributing](#-contributing)
+*   [Contributing](#contributing)
     
-*   [Development Roadmap 🗺️](#development-roadmap)
+*   [🗺️ Development Roadmap](#development-roadmap)
     
 ---
 
@@ -318,7 +318,7 @@ you_godot_project/
 │       ├── gsi_websocket_connection.gd                     # Minimal class to simplify WebSocket Connections inside WebSocket Server
 │       └── plugin.cfg                                      # Godot plugin.cfg
 ```
-## Critical Considerations ⚠️
+## ⚠️ Considerations
 
 *   **TLS/SSL Security Protocols:** Disabling `tls_verification_enabled` is advisable solely within controlled development environments (e.g., when utilizing self-signed certificates for local testing). For production deployments, it is recommended to use a properly signed SSL/TLS certificates and maintain TLS verification as enabled to ensure secure communication. 
     
@@ -347,7 +347,7 @@ To contribute effectively, please adhere to the following guidelines:
         
     *   Inclusion of explanatory comments for complex logic, while avoiding redundant annotations for self-evident code. _(Even comment-only PRs would be nice in case something is unclear for people unfamiliar with my code)_
 
-## Development Roadmap 🗺️
+## 🗺️ Development Roadmap
 
 | Feature | Status |
 | --- | --- |
