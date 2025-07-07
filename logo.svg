@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="243.17099"
+   height="119.82726"
+   viewBox="0 0 64.33899 31.704295"
+   version="1.1"
+   id="svg1"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs1">
+    <linearGradient
+       id="linearGradient1">
+      <stop
+         style="stop-color:#8bd050;stop-opacity:1;"
+         offset="0"
+         id="stop1" />
+      <stop
+         style="stop-color:#7ddcc1;stop-opacity:1;"
+         offset="1"
+         id="stop2" />
+    </linearGradient>
+    <rect
+       x="0"
+       y="0"
+       width="200"
+       height="100"
+       id="rect1" />
+    <linearGradient
+       xlink:href="#linearGradient1"
+       id="linearGradient2"
+       x1="6.3475652"
+       y1="50.735828"
+       x2="192.65244"
+       y2="50.735828"
+       gradientUnits="userSpaceOnUse" />
+    <filter
+       style="color-interpolation-filters:sRGB"
+       id="filter31"
+       x="-0.13610165"
+       y="-0.41618152"
+       width="1.3267642"
+       height="1.9992035">
+      <feFlood
+         result="flood"
+         in="SourceGraphic"
+         flood-opacity="0.321569"
+         flood-color="rgb(0,0,0)"
+         id="feFlood30" />
+      <feGaussianBlur
+         result="blur"
+         in="SourceGraphic"
+         stdDeviation="10.000000"
+         id="feGaussianBlur30" />
+      <feOffset
+         result="offset"
+         in="blur"
+         dx="10.000000"
+         dy="10.000000"
+         id="feOffset30" />
+      <feComposite
+         result="comp1"
+         operator="in"
+         in="flood"
+         in2="offset"
+         id="feComposite30" />
+      <feComposite
+         result="comp2"
+         operator="over"
+         in="SourceGraphic"
+         in2="comp1"
+         id="feComposite31" />
+    </filter>
+  </defs>
+  <g
+     id="layer1"
+     transform="translate(-2.2263356,-1.3457688)">
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,6.7468753,2.4511453)"
+       id="text1"
+       style="font-weight:bold;font-size:64px;line-height:102.043px;font-family:'Liberation Mono';-inkscape-font-specification:'Liberation Mono Bold';text-align:center;writing-mode:lr-tb;direction:ltr;white-space:pre;shape-inside:url(#rect1);fill:url(#linearGradient2);stroke:#000000;stroke-width:1.88976;stroke-dasharray:none;stroke-dashoffset:0;filter:url(#filter31)"><tspan
+         x="3.984375"
+         y="67.142079"
+         id="tspan2">gdGSI</tspan></text>
+  </g>
+</svg>

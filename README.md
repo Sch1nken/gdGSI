@@ -1,4 +1,5 @@
-# 🎮 gdGSI - Godot Game State Integration
+![gdGSI Logo](logo.svg)
+## Godot Game State Integration
 ---
 ## 🚨 The current state, while seemingly working, has not been tested thoroughly. Please report any issues you might find so they can be fixed 🚨
 ---
