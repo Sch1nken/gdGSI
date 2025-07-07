@@ -1,0 +1,71 @@
+[gd_scene load_steps=3 format=3 uid="uid://c1crtbtejhqsp"]
+
+[ext_resource type="Script" uid="uid://dumj544v84nby" path="res://main.gd" id="1_ig7tw"]
+[ext_resource type="Script" uid="uid://7m8gq3c7wx00" path="res://enemy.gd" id="2_0xm2m"]
+
+[node name="Main" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ig7tw")
+
+[node name="EnemyAnchor" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Enemy_Red" type="ColorRect" parent="EnemyAnchor"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -350.0
+offset_top = -20.0
+offset_right = -310.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.798129, 0, 0.230447, 1)
+script = ExtResource("2_0xm2m")
+
+[node name="Enemy_Red_Label" type="Label" parent="EnemyAnchor/Enemy_Red"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Red"
+
+[node name="Enemy_Blue" type="ColorRect" parent="EnemyAnchor"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 290.0
+offset_top = -20.0
+offset_right = 330.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.294092, 0.554839, 0.926028, 1)
+script = ExtResource("2_0xm2m")
+speed = 1.4
+
+[node name="Enemy_Blue_Label" type="Label" parent="EnemyAnchor/Enemy_Blue"]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Blue"

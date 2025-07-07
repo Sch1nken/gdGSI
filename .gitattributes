@@ -1,2 +1,9 @@
-# Auto detect text files and perform LF normalization
-* text=auto
+/**                    export-ignore
+/addons                !export-ignore
+/addons/gsi        !export-ignore
+/addons/gsi/**     !export-ignore
+# Maybe tests... someday
+# /addons/gsi/test   export-ignore
+
+# Normalize EOL for all files that Git considers text files.
+* text=auto eol=lf
