@@ -66,6 +66,7 @@ script = ExtResource("2_0xm2m")
 speed = 1.4
 
 [node name="Enemy_Blue_Label" type="Label" parent="EnemyAnchor/Enemy_Blue"]
+layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
 text = "Blue"

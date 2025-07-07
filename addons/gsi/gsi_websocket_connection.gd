@@ -1,4 +1,4 @@
-class_name GSIWebsocketConnection
+class_name GSIWebSocketConnection
 extends RefCounted
 
 enum ConnectionState { PENDING_TCP, PENDING_TLS_HANDSHAKE, CONNECTED_WS }
@@ -28,11 +28,9 @@ func set_websocket_peer(peer: WebSocketPeer) -> void:
 func cleanup() -> void:
 	if ws_peer != null:
 		ws_peer.close()
-		ws_peer.queue_free()
 		ws_peer = null
 
 	if stream != null:
 		if stream is StreamPeerTCP:
 			(stream as StreamPeerTCP).disconnect_from_host()
-		stream.queue_free()
 		stream = null

@@ -9,7 +9,7 @@
 		"heartbeat": 10.0,
 		"data": {
 			"provider": true,
-			"units": true
+			"enemies": true
 		},
 		"auth": {
 			"token": "abcdefghijklmopqrstuvxyz123456789"

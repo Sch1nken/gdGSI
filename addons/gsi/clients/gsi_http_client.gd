@@ -10,7 +10,7 @@ func _init(p_config: GSIConfig) -> void:
 	http_request.name = "GSIHttpRequest_%s" % config.id.validate_node_name()
 	add_child(http_request)
 	http_request.set_use_threads(true)
-	http_request.request_completed.connect(Callable(self, "_on_http_request_completed"))
+	http_request.request_completed.connect(_on_http_request_completed)
 
 
 func _get_display_name() -> String:

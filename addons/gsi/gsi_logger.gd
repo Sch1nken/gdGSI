@@ -11,7 +11,7 @@ const LOG_PREFIX: Dictionary[LogLevel, String] = {
 	LogLevel.DEBUG: "[DEBUG]"
 }
 
-static var _log_level: LogLevel = LogLevel.INFO
+static var _log_level: LogLevel = LogLevel.DEBUG
 
 
 static func set_log_level(level: LogLevel) -> void:

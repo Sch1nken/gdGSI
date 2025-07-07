@@ -31,6 +31,10 @@ window/size/viewport_width=1280
 window/size/viewport_height=720
 window/stretch/mode="viewport"
 
+[editor]
+
+run/main_run_args="--gamestateintegration"
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/gsi/plugin.cfg")

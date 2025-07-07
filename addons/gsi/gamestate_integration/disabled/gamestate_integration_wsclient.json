@@ -1,16 +1,16 @@
 {
-	"id": "dev_http",
-	"description": "HTTP endpoint for testing",
-	"type": "http",
+	"id": "dev_wsclient",
+	"description": "WebSocket Client for testing",
+	"type": "websocket_client",
 	"config": {
-		"uri": "http://127.0.0.1:5000",
+		"uri": "ws://127.0.0.1:9001",
 		"timeout": 5.0,
 		"buffer": 0.1,
 		"throttle": 0.25,
 		"heartbeat": 10.0,
 		"data": {
 			"provider": true,
-			"units": true,
+			"enemies": true
 		},
 		"auth": {
 			"token": "abcdefghijklmopqrstuvxyz123456789"

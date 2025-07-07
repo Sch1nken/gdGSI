@@ -1,7 +1,7 @@
 extends Node
 
 const GSI_CONFIG_FOLDER: StringName = "gamestate_integration/"
-const GSI_CONFIG_PATTERN: StringName = "^gamestate_integration_.*\\.cfg$"
+const GSI_CONFIG_PATTERN: StringName = "^gamestate_integration_.*\\.json$"
 
 var gsi_enabled: bool = false
 var _gsi_dir: StringName = "res://addons/gsi/"

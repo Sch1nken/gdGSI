@@ -106,11 +106,11 @@ For development purposes the `--gamestateintegration` flag can be added under `D
 
 ## ⚙️ Configuration
 
-The plugin is designed to load endpoint configurations from JSON files. By default, `gsi.gd` searches for files adhering to the pattern `gamestate_integration_*.cfg` within the `gamestate_integration/` directory. This directory is relative to the executable path in deployed builds and `res://addons/gsi/` within the editor environment. There are example config files provided, though by default they reside in the `res://addons/gsi/gamestate_integration/disabled` directory. To enable them just move them up a folder (into `gamestate_integration/`). These will only be loaded when using the editor and will be ignore in exported builds.
+The plugin is designed to load endpoint configurations from JSON files. By default, `gsi.gd` searches for files adhering to the pattern `gamestate_integration_*.json` within the `gamestate_integration/` directory. This directory is relative to the executable path in deployed builds and `res://addons/gsi/` within the editor environment. There are example config files provided, though by default they reside in the `res://addons/gsi/gamestate_integration/disabled` directory. To enable them just move them up a folder (into `gamestate_integration/`). These will only be loaded when using the editor and will be ignore in exported builds.
 
 ### Example Configuration Files
 
-**1\. HTTP Client Endpoint (`gamestate_integration/gamestate_integration_http.cfg`)**
+**1\. HTTP Client Endpoint (`gamestate_integration/gamestate_integration_http.json`)**
 
 ```
 {
@@ -125,7 +125,7 @@ The plugin is designed to load endpoint configurations from JSON files. By defau
         "heartbeat": 10.0,
         "data": {
             "provider": true,
-            "units": true,
+            "enemies": true,
         },
         "auth": {
             "token": "abcdefghijklmopqrstuvxyz123456789"
@@ -134,7 +134,7 @@ The plugin is designed to load endpoint configurations from JSON files. By defau
     }
 }
 ```
-**2\. WebSocket Client Endpoint (`gamestate_integration/gamestate_integration_wsclient.cfg`)**
+**2\. WebSocket Client Endpoint (`gamestate_integration/gamestate_integration_wsclient.json`)**
 
 ```
 {
@@ -148,8 +148,8 @@ The plugin is designed to load endpoint configurations from JSON files. By defau
         "throttle": 0.25,
         "heartbeat": 10.0,
         "data": {
-            "player": true,
-            "units": true
+            "provider": true,
+            "enemies": true
         },
         "auth": {
             "token": "abcdefghijklmopqrstuvxyz123456789"
@@ -159,7 +159,7 @@ The plugin is designed to load endpoint configurations from JSON files. By defau
 }
 ```
 
-**3\. WebSocket Server Endpoint (`gamestate_integration/gamestate_integration_wsserver.cfg`)** 
+**3\. WebSocket Server Endpoint (`gamestate_integration/gamestate_integration_wsserver.json`)** 
 ⚠️ WebSocket Server is **NOT** supported on HTML5 exports!
 
 ```
@@ -174,7 +174,7 @@ The plugin is designed to load endpoint configurations from JSON files. By defau
         "heartbeat": 10.0,
         "data": {
             "provider": true,
-            "units": true
+            "enemies": true
         },
         "auth": {
             "token": "abcdefghijklmopqrstuvxyz123456789"
@@ -308,15 +308,15 @@ you_godot_project/
 │       │   └── gsi_websocket_server.gd                     # WebSocket Server implementation
 │       ├── gamestate_integration
 │       │   └── disabled
-│       │       ├── gamestate_integration_http.cfg          # Example dev config for HTTP Client
-│       │       ├── gamestate_integration_wsclient.cfg      # Example dev config for WebSocket Client
-│       │       └── gamestate_integration_wsserver.cfg      # Example dev config for WebSocket Server
+│       │       ├── gamestate_integration_http.json          # Example dev config for HTTP Client
+│       │       ├── gamestate_integration_wsclient.json      # Example dev config for WebSocket Client
+│       │       └── gamestate_integration_wsserver.json      # Example dev config for WebSocket Server
 │       ├── gsi_base_client.gd                              # Base-class for client implementations
 │       ├── gsi_config.gd                                   # GSI Config specification and parser
 │       ├── gsi_logger.gd                                   # Simple logger for the plugin
 │       ├── gsi_plugin.gd                                   # Plugin file to be loaded by Godot
 │       ├── gsi_websocket_connection.gd                     # Minimal class to simplify WebSocket Connections inside WebSocket Server
-│       └── plugin.cfg                                      # Godot plugin.cfg
+│       └── plugin.json                                      # Godot plugin.json
 ```
 ## ⚠️ Considerations
 
