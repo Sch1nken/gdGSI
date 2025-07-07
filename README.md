@@ -40,7 +40,7 @@
     
 *   [Contributing](#-contributing)
     
-*   [Development Roadmap 🗺️](#development-roadmap-)
+*   [Development Roadmap 🗺️](#development-roadmap)
     
 ---
 
