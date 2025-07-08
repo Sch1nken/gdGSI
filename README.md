@@ -1,3 +1,17 @@
+### TL;DR;:
+
+**What is this??**
+gdGSI (Godot Game State Integration) is a Godot plugin that allows endusers (and developers) to extract pre-defined game-state data from a running game. For this it utlizes technologies like HTTP and WebSockets. 
+
+**But what does it do?**
+The plugin itself does not do a lot besides pushing out the data to pre-defined endpoints. The real magic happens when someone creates a custom endpoint to use this data properly. Here is a non-exhaustive list of ideas:
+- Create an overlay for your competitive game (so you can show tournament/gameplay stats in your livestream)
+- Create a tool/overlay for speedrunners (displaying what is currently unlocked in their stream or similiar)
+- Hook up to real world hardware. You're low health in-game? Make your RGB LED strips glow red!
+- And a lot more!
+
+---
+
 ![gdGSI Logo](logo.svg)
 ## Godot Game State Integration
 ---
