@@ -4,9 +4,12 @@
 	"type": "websocket_client",
 	"config": {
 		"uri": "ws://127.0.0.1:9001",
+		"use_added": true,
+		"use_previously": true,
+		"use_removed": true,
 		"timeout": 5.0,
 		"buffer": 0.1,
-		"throttle": 0.25,
+		"throttle": 8.0,
 		"heartbeat": 10.0,
 		"data": {
 			"provider": true,

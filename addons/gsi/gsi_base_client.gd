@@ -41,7 +41,7 @@ func _perform_send(_payload: Dictionary) -> void:
 
 func _get_display_name() -> String:
 	push_error("GSIBaseClient: _get_display_name must be implemented by subclasses.")
-	return "UnnamedClient"
+	return "GSIBaseClient"
 
 
 func queue_send(payload: Dictionary) -> void:
@@ -52,11 +52,18 @@ func queue_send(payload: Dictionary) -> void:
 
 	GSILogger.log_gsi(
 		"[GSIBaseClient] %s: Queued send for %.2f s." % [_get_display_name(), config.buffer],
-		GSILogger.LogLevel.DEBUG
+		GSILogger.LogLevel.VERBOSE
 	)
 
 
 func _attempt_send_game_state() -> void:
+	# TODO: Handle cases where sending can not happen because no one is connected?
+	# Like for websocket client when we are not connected to any server?
+	# For HTTP this works out fine, since we just try with the heartbeat timer
+	# Need to check for the websocket client / server
+	# Server might not _really_ work (we might even have multiple clients connected).
+	# we _could_ check if at least one is connected?
+
 	if is_sending:
 		(
 			GSILogger
@@ -65,7 +72,7 @@ func _attempt_send_game_state() -> void:
 					"[GSIBaseClient] %s: A send operation is already in progress, skipping this attempt."
 					% _get_display_name()
 				),
-				GSILogger.LogLevel.DEBUG
+				GSILogger.LogLevel.VERBOSE
 			)
 		)
 		return
@@ -76,7 +83,7 @@ func _attempt_send_game_state() -> void:
 				"[GSIBaseClient] %s: is already throttled (remaining: %.2f), skipping this attempt."
 				% [_get_display_name(), throttle_timer.time_left]
 			),
-			GSILogger.LogLevel.DEBUG
+			GSILogger.LogLevel.VERBOSE
 		)
 		return
 
@@ -137,6 +144,10 @@ func _handle_send_result(success: bool, sent_payload_base: Dictionary) -> void:
 
 
 func _reset_heartbeat_timer() -> void:
+	# TODO: Heartbeat timer works differently for different clients
+	# HTTP start heartbeat after last successfull send
+	# WS Server / Client I need to check
+	# But _reset_heartbeat_timer() sometimes gets called without even checking the send result
 	heartbeat_timer.start(config.heartbeat)
 	GSILogger.log_gsi(
 		(
@@ -145,6 +156,30 @@ func _reset_heartbeat_timer() -> void:
 		),
 		GSILogger.LogLevel.DEBUG
 	)
+
+
+func pause_timers() -> void:
+	if is_instance_valid(send_buffer_timer):
+		send_buffer_timer.stop()
+	if is_instance_valid(heartbeat_timer):
+		heartbeat_timer.stop()
+	if is_instance_valid(throttle_timer):
+		throttle_timer.stop()
+	GSILogger.log_gsi(
+		"[GSIBaseClient] %s: All timers paused." % _get_display_name(), GSILogger.LogLevel.DEBUG
+	)
+
+
+func resume_timers() -> void:
+	GSILogger.log_gsi(
+		"[GSIBaseClient] %s: Resuming timers. Heartbeat will restart." % _get_display_name(),
+		GSILogger.LogLevel.DEBUG
+	)
+	_reset_heartbeat_timer()
+	# This will restart the heartbeat, potentially triggering a send
+	# If there was a payload queued when paused, re-queue it to restart the buffer timer if needed.
+	if not queued_payload.is_empty():
+		queue_send(queued_payload)
 
 
 func _notification(what: int) -> void:

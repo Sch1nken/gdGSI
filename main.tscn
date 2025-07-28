@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://c1crtbtejhqsp"]
+[gd_scene load_steps=4 format=3 uid="uid://c1crtbtejhqsp"]
 
 [ext_resource type="Script" uid="uid://dumj544v84nby" path="res://main.gd" id="1_ig7tw"]
 [ext_resource type="Script" uid="uid://7m8gq3c7wx00" path="res://enemy.gd" id="2_0xm2m"]
+[ext_resource type="Script" uid="uid://8het6gayeyik" path="res://color_cycle.gd" id="3_h2yge"]
 
 [node name="Main" type="Control"]
 layout_mode = 3
@@ -43,6 +44,7 @@ color = Color(0.798129, 0, 0.230447, 1)
 script = ExtResource("2_0xm2m")
 
 [node name="Enemy_Red_Label" type="Label" parent="EnemyAnchor/Enemy_Red"]
+visible = false
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
@@ -62,10 +64,11 @@ offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.294092, 0.554839, 0.926028, 1)
-script = ExtResource("2_0xm2m")
-speed = 1.4
+script = ExtResource("3_h2yge")
+speed = 0.75
 
 [node name="Enemy_Blue_Label" type="Label" parent="EnemyAnchor/Enemy_Blue"]
+visible = false
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0

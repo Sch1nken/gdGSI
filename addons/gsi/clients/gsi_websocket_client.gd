@@ -20,6 +20,7 @@ func _get_display_name() -> String:
 
 func _perform_send(payload: Dictionary) -> void:
 	var current_state: int = ws_peer.get_ready_state()
+	print("STATE %s" % str(current_state))
 
 	if current_state == WebSocketPeer.STATE_CLOSED or current_state == WebSocketPeer.STATE_CLOSING:
 		GSILogger.log_gsi(
@@ -100,6 +101,7 @@ func _physics_process(_delta: float) -> void:
 	if current_peer_state == _last_peer_state:
 		if current_peer_state == WebSocketPeer.STATE_OPEN:
 			while ws_peer.get_available_packet_count() > 0:
+				@warning_ignore("unused_variable")
 				var packet: PackedByteArray = ws_peer.get_packet()
 				# We don't really care about data that is sent to us... just do work as usual
 		return

@@ -12,14 +12,16 @@ var buffer: float = 0.1
 var throttle: float = 0.25
 var heartbeat: float = 10.0
 
+var use_added: bool = false
+var use_removed: bool = false
+var use_previously: bool = false
+
 var auth_token: String = ""
 var data_sections: Dictionary = {}
 
 var tls_verification_enabled: bool = true
 var tls_certificate_path: String = ""
 var tls_key_path: String = ""
-
-var websocket_protocols: PackedStringArray = []
 
 
 static func from_file(file_path: String) -> GSIConfig:
@@ -88,6 +90,9 @@ static func from_dictionary(config_dict: Dictionary) -> GSIConfig:
 	new_config.heartbeat = float(raw_config.get("heartbeat", 10.0))
 	new_config.auth_token = raw_config.get("auth", {}).get("token", "")
 	new_config.data_sections = raw_config.get("data", {})
+	new_config.use_added = raw_config.get("use_added", false)
+	new_config.use_previously = raw_config.get("use_previously", false)
+	new_config.use_removed = raw_config.get("use_removed", false)
 
 	match new_config.type:
 		"http":
@@ -143,9 +148,6 @@ static func from_dictionary(config_dict: Dictionary) -> GSIConfig:
 				return null
 		"websocket_client":
 			new_config.uri = raw_config.get("uri", "")
-			new_config.websocket_protocols = raw_config.get(
-				"websocket_protocols", PackedStringArray()
-			)
 			new_config.tls_verification_enabled = raw_config.get("tls_verification_enabled", true)
 			if new_config.uri.is_empty():
 				GSILogger.log_gsi(
@@ -200,10 +202,7 @@ func _to_string() -> String:
 		"websocket_server":
 			s += "Port: %s, TLS Cert: %s, " % [str(port), not tls_certificate_path.is_empty()]
 		"websocket_client":
-			s += (
-				"URI: %s, Protocols: %s, TLS Verify: %s, "
-				% [uri, str(websocket_protocols), str(tls_verification_enabled)]
-			)
+			s += ("URI: %s, TLS Verify: %s, " % [uri, str(tls_verification_enabled)])
 
 	s += (
 		"Timeout: %s, Buffer: %s, Throttle: %s, Heartbeat: %s"

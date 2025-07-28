@@ -4,13 +4,16 @@
 	"type": "http",
 	"config": {
 		"uri": "http://127.0.0.1:5000",
+		"use_added": true,
+		"use_previously": true,
+		"use_removed": true,
 		"timeout": 5.0,
 		"buffer": 0.1,
 		"throttle": 0.25,
 		"heartbeat": 10.0,
 		"data": {
 			"provider": true,
-			"enemies": true,
+			"enemies": true
 		},
 		"auth": {
 			"token": "abcdefghijklmopqrstuvxyz123456789"

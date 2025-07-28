@@ -16,3 +16,6 @@ mono_crash.*.json
 
 # vscode
 .vscode/
+
+addons/gdUnit4
+addons/.gdunit_update

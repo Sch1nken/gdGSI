@@ -1,8 +1,18 @@
-![gdGSI Logo](logo.svg)
+![gdGSI Logo](logo.png)
 ## Godot Game State Integration
----
-## 🚨 The current state, while seemingly working, has not been tested thoroughly. Please report any issues you might find so they can be fixed 🚨
----
+
+This is a Godot Engine plugin designed to facilitate Game State Integration (GSI), allowing your game to send real-time game state data to external applications or services. This is particularly useful for creating integrations with third-party tools, overlays, or custom hardware that react to in-game events.
+
+## Features
+- **Real-time Game State Export:** Send dynamic game data (player health, score, map info, inventory, custom events, etc.) as JSON payloads.
+- **Configurable Endpoints:** Supports various endpoint types (HTTP, WebSocket Server, WebSocket Client) to send data to different destinations.
+- **Buffering & Throttling:** Configurable options to control the frequency and aggregation of data sends.
+- **Heartbeat:** Ensures a continuous connection and periodic state updates even when no changes occur.
+- **Modular Design:** Easily extendable to support new endpoint types.
+- **Flexible Data Management:** Set, update, and remove sections of game data or individual custom data points.
+- **User Configurable:** If and how it is used lies entirely in the hands of the end-user.
+- **Tested:** A suite of [gdUnit4](https://github.com/MikeSchulze/gdUnit4) tests ensures core functionality. 
+
 ## Table of Contents
 
 *   [Core Functionality](#core-functionality)
@@ -94,7 +104,7 @@ This document outlines a robust and flexible Godot 4 plugin designed to facilita
 | **TLS Configurability** | ✅ Yes | ✅ Yes | ✅ Yes |
 | **HTML5 Export Compatibility** | ✅ Yes | ✅ Yes | ❌ No |
 | **Buffer/Throttle/Heartbeat** | ✅ Yes | ✅ Yes | ✅ Yes |
-| **Delta Updates (`previously`/`added`)** | ✅ Yes | ✅ Yes | ✅ Yes |
+| **Delta Updates (`previously`/`added`/`removed`)** | ✅ Yes | ✅ Yes | ✅ Yes |
 | **Authentication Token Support** | ✅ Yes | ✅ Yes | ✅ Yes |
 
 ## 🚀 Installation Guide
@@ -120,6 +130,9 @@ The plugin is designed to load endpoint configurations from JSON files. By defau
     "type": "http",
     "config": {
         "uri": "http://127.0.0.1:5000",
+        "use_added": true,
+        "use_previously": true,
+        "use_removed": true,
         "timeout": 5.0,
         "buffer": 0.1,
         "throttle": 0.25,
@@ -144,6 +157,9 @@ The plugin is designed to load endpoint configurations from JSON files. By defau
     "type": "websocket_client",
     "config": {
         "uri": "ws://127.0.0.1:9001",
+        "use_added": true,
+        "use_previously": true,
+        "use_removed": true,
         "timeout": 5.0,
         "buffer": 0.1,
         "throttle": 0.25,
@@ -170,6 +186,9 @@ The plugin is designed to load endpoint configurations from JSON files. By defau
     "type": "websocket_server",
     "config": {
         "port": 9000,
+        "use_added": true,
+        "use_previously": true,
+        "use_removed": true,
         "buffer": 0.1,
         "throttle": 0.25,
         "heartbeat": 10.0,
@@ -203,6 +222,9 @@ The plugin is designed to load endpoint configurations from JSON files. By defau
 | ------------------------ | ------- | --------------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
 | uri                      | String  | HTTP, WS Client | None          | The target Uniform Resource Identifier for data transmission.                                                                                 |
 | port                     | Integer | WS Server       | None          | The network port on which the WebSocket server listens for incoming connections.                                                              |
+| use_added   | Boolean | Optional | false | If true, the server calculates a delta of newly added data and appends it to the payload. |
+| use_previously | Boolean | Optional | false | If true, the server calculates a delta of previously and current data and appends it to the payload. |
+| use_removed | Boolean | Optional | false | If true, the server calculates a delta of removed data and appends it to the payload. |
 | timeout                  | Float   | Optional        | 5.0      | The maximum duration, in seconds, to await a response or connection establishment.                                                            |
 | buffer                   | Float   | Optional        | 0.1      | The time interval, in seconds, during which state changes are aggregated before a consolidated transmission.                                  |
 | throttle                 | Float   | Optional        | 0.25     | The minimum interval, in seconds, between successful data transmissions to prevent excessive network traffic.                                 |
@@ -323,7 +345,7 @@ you_godot_project/
 
 *   **TLS/SSL Security Protocols:** Disabling `tls_verification_enabled` is advisable solely within controlled development environments (e.g., when utilizing self-signed certificates for local testing). For production deployments, it is recommended to use a properly signed SSL/TLS certificates and maintain TLS verification as enabled to ensure secure communication. 
     
-*   **Performance Implications:** While the plugin incorporates optimizations for delta updates and data filtering, it is prudent to monitor the frequency of updates to large segments of your game state. High-frequency transmissions of extensive datasets may potentially impact application performance or network resource utilization. Additionally the state-merging logic could cause performance issues when (larger) sections are updated very frequently. It might be wise to accumulate state-changes over a game-tick instead of sending every state-change directly to the GSI plugin. (i.e. instead of iterating over every enemy and calling `GSI.set_section_data()` for that particular enemy data, create a dictionary after the every enemy ticked, and use `GSI.set_section_data` only once. This reduces possible expensive merge calculation).
+*   **Performance Implications:** While the plugin incorporates optimizations for delta updates and data filtering, very frequent and/or deep nested data updates can impact performance. High-frequency transmissions of extensive datasets may potentially impact application performance or network resource utilization. Additionally the state-merging logic could cause performance issues when (larger) sections are updated very frequently. It might be wise to accumulate state-changes over a game-tick instead of sending every state-change directly to the GSI plugin. (i.e. instead of iterating over every enemy and calling `GSI.set_section_data()` for that particular enemy data, create a dictionary after the every enemy ticked, and use `GSI.set_section_data` only once. This reduces possibly expensive merge calculations).
     
 *   **Receiver Dependency:** This plugin functions as the data _sender_. Consequently, a corresponding GSI _receiver_ application is required (e.g., a Python Flask server, Node.js server, or a specialized overlay application). This receiver must be configured to listen for HTTP POST requests or WebSocket connections at the specified URIs/ports and process the incoming JSON payloads. Some small example endpoint implementations will be provided soon(tm).
     
@@ -334,7 +356,7 @@ Contributions to this project are highly encouraged and welcome. Should you iden
 
 To contribute effectively, please adhere to the following guidelines:
 
-1.  **Defect Reporting:** In the event of an identified bug, please submit a detailed issue report via the GitHub repository. Such reports should ideally include reproducible steps, the anticipated behavior, and the observed outcome.
+1.  **Reporting Issues:** Please submit a detailed issue report via the GitHub repository. Such reports should ideally include reproducible steps, the anticipated behavior, and the observed outcome.
     
 2.  **Feature Proposals:** For new feature concepts, please initiate a discussion by opening an issue. Clearly articulate the proposed functionality and its potential benefits.
     
@@ -362,7 +384,11 @@ To contribute effectively, please adhere to the following guidelines:
 | WebSocket Server Support | ✅ Completed |
 | Improved Error Logging | ✅ Completed |
 | Receiver Application Examples (Multi-Language) | ✅ Completed |
+| Basic Tests | ✅ Completed |
+| Allow Removal Of Keys From Sections | ✅ Completed |
+| `removed` Delta Calculation | ✅ Completed |
 | **Better Godot Project Example Project** | ⬜ Planned |
 | **Integrated Editor Configuration Interface** | ⬜ Planned |
+| **Simple In-Game Configuration Interface** | ⬜ Planned |
 | **Performance Optimization** | ⬜ Planned |
-| **Allow Removal Of Keys From Sections** | ⬜ Planned |
+

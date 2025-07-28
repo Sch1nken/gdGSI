@@ -18,6 +18,9 @@ func _get_display_name() -> String:
 
 
 func _perform_send(payload: Dictionary) -> void:
+	# TODO: Move some of the stuff out of here and into init...
+	# Headers, as well as timeout, and tls_verification do not need to be here
+	# and get reapplied every send
 	var headers: PackedStringArray = ["Content-Type: application/json"]
 	var body: String = JSON.stringify(payload)
 

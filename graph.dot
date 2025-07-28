@@ -1,0 +1,59 @@
+digraph G {
+    rankdir=LR;
+    node [shape=box, style="filled", fillcolor="#E0F2F7", fontname="Helvetica"];
+    edge [color="#4285F4"];
+
+    subgraph cluster_main_plugin {
+        label = "Godot GSI Plugin";
+        color = "#0F9D58";
+        style = "filled";
+        fillcolor = "#E6F7E6";
+
+        GSISender [label="GSISender\n(gsi_sender.gd)", shape=box, fillcolor="#FABC05"];
+
+        subgraph cluster_clients {
+            label = "GSI Clients";
+            color = "#DB4437";
+            style = "filled";
+            fillcolor = "#FCE8E6";
+
+            GSIBaseClient [label="GSIBaseClient\n(Abstract)", shape=diamond, fillcolor="#FFD1D1"];
+            GSIHttpClient [label="GSIHttpClient\n(gsi_http_client.gd)"];
+            GSIWebSocketClient [label="GSIWebSocketClient\n(gsi_websocket_client.gd)"];
+            GSIWebSocketServer [label="GSIWebSocketServer\n(gsi_websocket_server.gd)"];
+
+            GSIHttpClient -> GSIBaseClient [arrowhead=empty, style=dashed, label="inherits"];
+            GSIWebSocketClient -> GSIBaseClient [arrowhead=empty, style=dashed, label="inherits"];
+            GSIWebSocketServer -> GSIBaseClient [arrowhead=empty, style=dashed, label="inherits"];
+        }
+
+        subgraph cluster_config_utils {
+            label = "Configuration & Utilities";
+            color = "#63b3ed";
+            style = "filled";
+            fillcolor = "#EAF6FD";
+
+            GSIConfig [label="GSIConfig\n(gsi_config.gd)"];
+            GSIConfigParser [label="GSIConfigParser\n(gsi_config_parser.gd)"];
+            Logger [label="Logger\n(logger.gd)"];
+        }
+
+        GSISender -> GSIBaseClient [label="manages *"];
+        GSISender -> GSIConfigParser [label="uses"];
+        GSISender -> Logger [label="uses"];
+        GSISender -> GSIConfig [label="creates/uses"];
+
+        GSIBaseClient -> GSIConfig [label="uses 1"];
+        GSIBaseClient -> "Timer" [label="manages 3", shape=oval, fillcolor="#C8E6C9"];
+
+        GSIHttpClient -> "HTTPRequest" [label="uses 1", shape=oval, fillcolor="#C8E6C9"];
+        GSIWebSocketClient -> "WebSocketPeer" [label="uses 1", shape=oval, fillcolor="#C8E6C9"];
+        GSIWebSocketServer -> "WebSocketServer" [label="uses 1", shape=oval, fillcolor="#C8E6C9"];
+        GSIWebSocketServer -> "WebSocketPeer" [label="manages *", color="#DB4437"];
+
+        GSIConfigParser -> GSIConfig [label="creates *"];
+    }
+}
+
+
+

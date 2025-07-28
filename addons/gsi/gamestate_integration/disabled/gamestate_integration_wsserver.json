@@ -4,6 +4,9 @@
 	"type": "websocket_server",
 	"config": {
 		"port": 9000,
+		"use_added": true,
+		"use_previously": true,
+		"use_removed": true,
 		"buffer": 0.1,
 		"throttle": 0.25,
 		"heartbeat": 10.0,

@@ -279,8 +279,8 @@ func _check_and_accept_websocket(connection: GSIWebSocketConnection, pending_id:
 func _get_stream_status(connection: GSIWebSocketConnection) -> int:
 	if connection.state == GSIWebSocketConnection.ConnectionState.PENDING_TLS_HANDSHAKE:
 		return (connection.stream as StreamPeerTLS).get_status()
-	else:
-		return (connection.stream as StreamPeerTCP).get_status()
+
+	return (connection.stream as StreamPeerTCP).get_status()
 
 
 func _accept_websocket_connection(connection: GSIWebSocketConnection, pending_id: int) -> void:
